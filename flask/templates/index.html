@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Crypto Dashboard</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h1>Welcome to the Cryptocurrency Dashboard</h1>
+        <p>Explore the latest metrics of popular cryptocurrencies.</p>
+        <a href="{{ url_for('dashboard') }}" class="button">Go to Dashboard</a>
+    </main>
+</body>
+</html>
