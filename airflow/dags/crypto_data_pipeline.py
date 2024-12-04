@@ -30,7 +30,7 @@ def get_crypto_data():
     url = 'https://api.coingecko.com/api/v3/coins/markets'
     params = {
         'vs_currency': 'usd',
-        'ids': 'bitcoin,ethereum,litecoin'
+        'ids': 'bitcoin,ethereum,litecoin,tether,binancecoin',
     }
     response = requests.get(url, params=params)
     if response.status_code != 200:
