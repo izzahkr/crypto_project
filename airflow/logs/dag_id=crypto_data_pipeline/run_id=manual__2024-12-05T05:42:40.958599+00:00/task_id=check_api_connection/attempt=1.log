@@ -1,0 +1,26 @@
+[2024-12-05 05:42:42,593] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: crypto_data_pipeline.check_api_connection manual__2024-12-05T05:42:40.958599+00:00 [queued]>
+[2024-12-05 05:42:42,598] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: crypto_data_pipeline.check_api_connection manual__2024-12-05T05:42:40.958599+00:00 [queued]>
+[2024-12-05 05:42:42,598] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2024-12-05 05:42:42,598] {taskinstance.py:1357} INFO - Starting attempt 1 of 4
+[2024-12-05 05:42:42,598] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2024-12-05 05:42:42,606] {taskinstance.py:1377} INFO - Executing <Task(HttpSensor): check_api_connection> on 2024-12-05 05:42:40.958599+00:00
+[2024-12-05 05:42:42,609] {standard_task_runner.py:52} INFO - Started process 50 to run task
+[2024-12-05 05:42:42,612] {standard_task_runner.py:79} INFO - Running: ['airflow', 'tasks', 'run', 'crypto_data_pipeline', 'check_api_connection', 'manual__2024-12-05T05:42:40.958599+00:00', '--job-id', '22', '--raw', '--subdir', 'DAGS_FOLDER/crypto_data_pipeline.py', '--cfg-path', '/tmp/tmpmfdolpmu', '--error-file', '/tmp/tmp8jx_rsj3']
+[2024-12-05 05:42:42,612] {standard_task_runner.py:80} INFO - Job 22: Subtask check_api_connection
+[2024-12-05 05:42:42,663] {task_command.py:369} INFO - Running <TaskInstance: crypto_data_pipeline.check_api_connection manual__2024-12-05T05:42:40.958599+00:00 [running]> on host a86425dd3aa9
+[2024-12-05 05:42:42,731] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=airflow
+AIRFLOW_CTX_DAG_ID=crypto_data_pipeline
+AIRFLOW_CTX_TASK_ID=check_api_connection
+AIRFLOW_CTX_EXECUTION_DATE=2024-12-05T05:42:40.958599+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2024-12-05T05:42:40.958599+00:00
+[2024-12-05 05:42:42,732] {http.py:97} INFO - Poking: api/v3/coins/markets
+[2024-12-05 05:42:42,743] {base.py:68} INFO - Using connection ID 'coin_gecko_api' for task execution.
+[2024-12-05 05:42:42,745] {http.py:129} INFO - Sending 'GET' to url: https://api.coingecko.com/api/v3/coins/markets
+[2024-12-05 05:42:44,328] {base.py:301} INFO - Success criteria met. Exiting.
+[2024-12-05 05:42:44,345] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=crypto_data_pipeline, task_id=check_api_connection, execution_date=20241205T054240, start_date=20241205T054242, end_date=20241205T054244
+[2024-12-05 05:42:44,390] {local_task_job.py:156} INFO - Task exited with return code 0
+[2024-12-05 05:42:44,445] {local_task_job.py:273} INFO - 1 downstream tasks scheduled from follow-on schedule check

@@ -7,7 +7,7 @@ import plotly.express as px
 # Database connection
 def get_connection():
     return psycopg2.connect(
-        host=os.getenv("POSTGRES_HOST", "localhost"),
+        host=os.getenv("POSTGRES_HOST", "crypto_project-postgres-1"),
         port=os.getenv("POSTGRES_PORT", "5432"),
         user=os.getenv("POSTGRES_USER", "postgres"),
         password=os.getenv("POSTGRES_PASSWORD", "postgres"),
@@ -45,7 +45,7 @@ if page == "Home":
     """, unsafe_allow_html=True)
 
     # Add an image
-    st.image("/home/3323600030_Aulia/crypto_project/streamlit/crypto.jpg", use_container_width=True)
+    st.image("streamlit/crypto.jpg", use_container_width=True)
 
     # Add visualization explanation and purpose below the image
     st.markdown("""
