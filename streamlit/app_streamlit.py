@@ -45,7 +45,7 @@ if page == "Home":
     """, unsafe_allow_html=True)
 
     # Add an image
-    st.image("/home/3323600030_Aulia/crypto_project/flask/crypto.jpg", use_container_width=True)
+    st.image("/home/3323600030_Aulia/crypto_project/streamlit/crypto.jpg", use_container_width=True)
 
     # Add visualization explanation and purpose below the image
     st.markdown("""
