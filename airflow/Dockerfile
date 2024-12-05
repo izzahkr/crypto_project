@@ -1,10 +1,18 @@
-FROM apache/airflow:2.7.1-python3.9
+# Gunakan image dasar Airflow
+FROM apache/airflow:2.3.0
 
-# Install additional dependencies
-COPY requirements.txt /requirements.txt
-RUN pip install --no-cache-dir -r /requirements.txt
+# Pindahkan ke pengguna airflow sebelum menjalankan pip install
+USER airflow
 
-# Set environment variables for Airflow
-ENV AIRFLOW_HOME=/opt/airflow
-WORKDIR /opt/airflow
+# Install dependensi tambahan
+RUN pip install --no-cache-dir psycopg2-binary requests
+
+# Menyalin file DAG ke dalam container
+COPY ./dags /opt/airflow/dags
+
+# Menyalin file konfigurasi airflow.cfg jika ada
+COPY airflow.cfg /opt/airflow/airflow.cfg
+
+# Pastikan Airflow berjalan dengan benar saat container dijalankan
+CMD ["bash", "-c", "airflow db init && airflow webserver"]
 

@@ -1,43 +1,65 @@
-version: "3.9"
-
+version: '3'
 services:
-  postgres:
+  airflow-webserver:
     build:
-      context: ./postgres
-    container_name: postgres
-    ports:
-      - "5432:5432"
+      context: ./airflow  # Build dari folder airflow
+    image: airflow-custom:latest
     environment:
-      POSTGRES_DB: airflow
-      POSTGRES_USER: airflow
-      POSTGRES_PASSWORD: airflow
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
-  airflow:
-    build:
-      context: ./airflow
-    container_name: airflow
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://postgres:postgres@postgres/crypto_db
+      - AIRFLOW__CORE__LOAD_EXAMPLES=False
+      - AIRFLOW__API__AUTH_BACKEND=airflow.api.auth.backend.basic_auth
+      - AIRFLOW__CORE__SECRET_KEY=YOUR_SECRET_KEY_HERE  # Ganti dengan secret key Anda
     ports:
       - "8080:8080"
-    environment:
-      AIRFLOW__CORE__EXECUTOR: LocalExecutor
-      AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://postgres:postgres@postgres:5432/crypto_db
-      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
     depends_on:
       - postgres
+    networks:
+      - airflow_network
     volumes:
+      - ./airflow/logs:/opt/airflow/logs  # Menambahkan volume untuk log
       - ./airflow/dags:/opt/airflow/dags
+    command: ["bash", "-c", "airflow db init && airflow webserver"]
 
-  flask:
+  airflow-scheduler:
     build:
-      context: ./flask
-    container_name: flask
+      context: ./airflow  # Build dari folder airflow
+    image: airflow-custom:latest
+    command: ["bash", "-c", "airflow db init && airflow scheduler"]
+    environment:
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://postgres:postgres@postgres/crypto_db
+      - AIRFLOW__CORE__SECRET_KEY=YOUR_SECRET_KEY_HERE  # Ganti dengan secret key Anda
+    depends_on:
+      - airflow-webserver
+      - postgres
+    networks:
+      - airflow_network
+    volumes:
+      - ./airflow/logs:/opt/airflow/logs  # Menambahkan volume untuk log
+      - ./airflow/dags:/opt/airflow/dags
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: crypto_db
     ports:
-      - "5000:5000"
+      - "5432:5432"
+    networks:
+      - airflow_network
+    volumes:
+      - ./postgres/init_db.sql:/docker-entrypoint-initdb.d/init.sql # Jika ada skrip SQL untuk inisialisasi database
+
+  streamlit:
+    build:
+      context: ./streamlit  # Build dari folder flask
+    ports:
+      - "8501:8501"
+    networks:
+      - airflow_network
     depends_on:
       - postgres
 
-volumes:
-  postgres_data:
+networks:
+  airflow_network:
+    driver: bridge
 

@@ -1,0 +1,24 @@
+[2024-12-05 04:00:03,717] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: crypto_data_pipeline.fetch_crypto_data scheduled__2024-12-05T03:00:00+00:00 [queued]>
+[2024-12-05 04:00:03,723] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: crypto_data_pipeline.fetch_crypto_data scheduled__2024-12-05T03:00:00+00:00 [queued]>
+[2024-12-05 04:00:03,723] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2024-12-05 04:00:03,723] {taskinstance.py:1357} INFO - Starting attempt 1 of 4
+[2024-12-05 04:00:03,723] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2024-12-05 04:00:03,731] {taskinstance.py:1377} INFO - Executing <Task(PythonOperator): fetch_crypto_data> on 2024-12-05 03:00:00+00:00
+[2024-12-05 04:00:03,733] {standard_task_runner.py:52} INFO - Started process 60 to run task
+[2024-12-05 04:00:03,735] {standard_task_runner.py:79} INFO - Running: ['airflow', 'tasks', 'run', 'crypto_data_pipeline', 'fetch_crypto_data', 'scheduled__2024-12-05T03:00:00+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/crypto_data_pipeline.py', '--cfg-path', '/tmp/tmpmw_fgzrs', '--error-file', '/tmp/tmpfitvp61n']
+[2024-12-05 04:00:03,736] {standard_task_runner.py:80} INFO - Job 4: Subtask fetch_crypto_data
+[2024-12-05 04:00:03,754] {logging_mixin.py:115} WARNING - /home/airflow/.local/lib/python3.7/site-packages/airflow/configuration.py:470 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-12-05 04:00:03,798] {task_command.py:369} INFO - Running <TaskInstance: crypto_data_pipeline.fetch_crypto_data scheduled__2024-12-05T03:00:00+00:00 [running]> on host a86425dd3aa9
+[2024-12-05 04:00:03,852] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=airflow
+AIRFLOW_CTX_DAG_ID=crypto_data_pipeline
+AIRFLOW_CTX_TASK_ID=fetch_crypto_data
+AIRFLOW_CTX_EXECUTION_DATE=2024-12-05T03:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2024-12-05T03:00:00+00:00
+[2024-12-05 04:00:04,573] {python.py:173} INFO - Done. Returned value was: None
+[2024-12-05 04:00:04,585] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=crypto_data_pipeline, task_id=fetch_crypto_data, execution_date=20241205T030000, start_date=20241205T040003, end_date=20241205T040004
+[2024-12-05 04:00:04,630] {local_task_job.py:156} INFO - Task exited with return code 0
+[2024-12-05 04:00:04,657] {local_task_job.py:273} INFO - 1 downstream tasks scheduled from follow-on schedule check

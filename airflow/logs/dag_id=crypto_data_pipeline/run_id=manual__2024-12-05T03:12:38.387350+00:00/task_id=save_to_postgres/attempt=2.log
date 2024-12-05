@@ -1,0 +1,32 @@
+[2024-12-05 03:22:47,367] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: crypto_data_pipeline.save_to_postgres manual__2024-12-05T03:12:38.387350+00:00 [queued]>
+[2024-12-05 03:22:47,373] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: crypto_data_pipeline.save_to_postgres manual__2024-12-05T03:12:38.387350+00:00 [queued]>
+[2024-12-05 03:22:47,373] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2024-12-05 03:22:47,373] {taskinstance.py:1357} INFO - Starting attempt 2 of 4
+[2024-12-05 03:22:47,373] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2024-12-05 03:22:47,381] {taskinstance.py:1377} INFO - Executing <Task(PythonOperator): save_to_postgres> on 2024-12-05 03:12:38.387350+00:00
+[2024-12-05 03:22:47,384] {standard_task_runner.py:52} INFO - Started process 76 to run task
+[2024-12-05 03:22:47,386] {standard_task_runner.py:79} INFO - Running: ['airflow', 'tasks', 'run', 'crypto_data_pipeline', 'save_to_***', 'manual__2024-12-05T03:12:38.387350+00:00', '--job-id', '23', '--raw', '--subdir', 'DAGS_FOLDER/crypto_data_pipeline.py', '--cfg-path', '/tmp/tmpmw_jwg02', '--error-file', '/tmp/tmprvrghrm2']
+[2024-12-05 03:22:47,386] {standard_task_runner.py:80} INFO - Job 23: Subtask save_to_***
+[2024-12-05 03:22:47,425] {task_command.py:369} INFO - Running <TaskInstance: crypto_data_pipeline.save_to_postgres manual__2024-12-05T03:12:38.387350+00:00 [running]> on host 85834e6b4d18
+[2024-12-05 03:22:47,480] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=airflow
+AIRFLOW_CTX_DAG_ID=crypto_data_pipeline
+AIRFLOW_CTX_TASK_ID=save_to_***
+AIRFLOW_CTX_EXECUTION_DATE=2024-12-05T03:12:38.387350+00:00
+AIRFLOW_CTX_TRY_NUMBER=2
+AIRFLOW_CTX_DAG_RUN_ID=manual__2024-12-05T03:12:38.387350+00:00
+[2024-12-05 03:22:47,480] {taskinstance.py:1889} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 171, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 189, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/crypto_data_pipeline.py", line 50, in save_to_postgres
+    with open(TEMP_FILE_PATH, 'r') as f:
+FileNotFoundError: [Errno 2] No such file or directory: '/tmp/crypto_data.json'
+[2024-12-05 03:22:47,488] {taskinstance.py:1400} INFO - Marking task as UP_FOR_RETRY. dag_id=crypto_data_pipeline, task_id=save_to_***, execution_date=20241205T031238, start_date=20241205T032247, end_date=20241205T032247
+[2024-12-05 03:22:47,494] {standard_task_runner.py:97} ERROR - Failed to execute job 23 for task save_to_*** ([Errno 2] No such file or directory: '/tmp/crypto_data.json'; 76)
+[2024-12-05 03:22:47,518] {local_task_job.py:156} INFO - Task exited with return code 1
+[2024-12-05 03:22:47,542] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check

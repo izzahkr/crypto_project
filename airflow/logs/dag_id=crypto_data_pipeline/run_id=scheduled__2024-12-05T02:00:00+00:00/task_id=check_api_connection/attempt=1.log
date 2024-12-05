@@ -1,0 +1,126 @@
+[2024-12-05 03:12:31,644] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: crypto_data_pipeline.check_api_connection scheduled__2024-12-05T02:00:00+00:00 [queued]>
+[2024-12-05 03:12:31,649] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: crypto_data_pipeline.check_api_connection scheduled__2024-12-05T02:00:00+00:00 [queued]>
+[2024-12-05 03:12:31,649] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2024-12-05 03:12:31,649] {taskinstance.py:1357} INFO - Starting attempt 1 of 4
+[2024-12-05 03:12:31,649] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2024-12-05 03:12:31,657] {taskinstance.py:1377} INFO - Executing <Task(HttpSensor): check_api_connection> on 2024-12-05 02:00:00+00:00
+[2024-12-05 03:12:31,660] {standard_task_runner.py:52} INFO - Started process 53 to run task
+[2024-12-05 03:12:31,662] {standard_task_runner.py:79} INFO - Running: ['airflow', 'tasks', 'run', 'crypto_data_pipeline', 'check_api_connection', 'scheduled__2024-12-05T02:00:00+00:00', '--job-id', '2', '--raw', '--subdir', 'DAGS_FOLDER/crypto_data_pipeline.py', '--cfg-path', '/tmp/tmplf2soeh2', '--error-file', '/tmp/tmpgmv3nn35']
+[2024-12-05 03:12:31,663] {standard_task_runner.py:80} INFO - Job 2: Subtask check_api_connection
+[2024-12-05 03:12:31,677] {logging_mixin.py:115} WARNING - /home/airflow/.local/lib/python3.7/site-packages/airflow/configuration.py:470 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-12-05 03:12:31,706] {task_command.py:369} INFO - Running <TaskInstance: crypto_data_pipeline.check_api_connection scheduled__2024-12-05T02:00:00+00:00 [running]> on host 85834e6b4d18
+[2024-12-05 03:12:31,767] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=airflow
+AIRFLOW_CTX_DAG_ID=crypto_data_pipeline
+AIRFLOW_CTX_TASK_ID=check_api_connection
+AIRFLOW_CTX_EXECUTION_DATE=2024-12-05T02:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2024-12-05T02:00:00+00:00
+[2024-12-05 03:12:31,767] {http.py:97} INFO - Poking: api/v3/coins/markets
+[2024-12-05 03:12:31,784] {taskinstance.py:1889} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/sensors/base.py", line 277, in execute
+    poke_return = self.poke(context)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/http/sensors/http.py", line 112, in poke
+    raise exc
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/http/sensors/http.py", line 103, in poke
+    extra_options=self.extra_options,
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/http/hooks/http.py", line 114, in run
+    session = self.get_conn(headers)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/http/hooks/http.py", line 68, in get_conn
+    conn = self.get_connection(self.http_conn_id)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/hooks/base.py", line 67, in get_connection
+    conn = Connection.get_connection_from_secrets(conn_id)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/connection.py", line 430, in get_connection_from_secrets
+    raise AirflowNotFoundException(f"The conn_id `{conn_id}` isn't defined")
+airflow.exceptions.AirflowNotFoundException: The conn_id `coin_gecko_api` isn't defined
+[2024-12-05 03:12:31,787] {taskinstance.py:1400} INFO - Marking task as UP_FOR_RETRY. dag_id=crypto_data_pipeline, task_id=check_api_connection, execution_date=20241205T020000, start_date=20241205T031231, end_date=20241205T031231
+[2024-12-05 03:12:31,793] {standard_task_runner.py:97} ERROR - Failed to execute job 2 for task check_api_connection (The conn_id `coin_gecko_api` isn't defined; 53)
+[2024-12-05 03:12:31,834] {local_task_job.py:156} INFO - Task exited with return code 1
+[2024-12-05 03:12:31,866] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-12-05 03:35:58,575] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: crypto_data_pipeline.check_api_connection scheduled__2024-12-05T02:00:00+00:00 [queued]>
+[2024-12-05 03:35:58,581] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: crypto_data_pipeline.check_api_connection scheduled__2024-12-05T02:00:00+00:00 [queued]>
+[2024-12-05 03:35:58,581] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2024-12-05 03:35:58,581] {taskinstance.py:1357} INFO - Starting attempt 1 of 4
+[2024-12-05 03:35:58,581] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2024-12-05 03:35:58,589] {taskinstance.py:1377} INFO - Executing <Task(HttpSensor): check_api_connection> on 2024-12-05 02:00:00+00:00
+[2024-12-05 03:35:58,591] {standard_task_runner.py:52} INFO - Started process 50 to run task
+[2024-12-05 03:35:58,594] {standard_task_runner.py:79} INFO - Running: ['airflow', 'tasks', 'run', 'crypto_data_pipeline', 'check_api_connection', 'scheduled__2024-12-05T02:00:00+00:00', '--job-id', '2', '--raw', '--subdir', 'DAGS_FOLDER/crypto_data_pipeline.py', '--cfg-path', '/tmp/tmpx4xl5rar', '--error-file', '/tmp/tmp9s20mc3l']
+[2024-12-05 03:35:58,594] {standard_task_runner.py:80} INFO - Job 2: Subtask check_api_connection
+[2024-12-05 03:35:58,607] {logging_mixin.py:115} WARNING - /home/airflow/.local/lib/python3.7/site-packages/airflow/configuration.py:470 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-12-05 03:35:58,644] {task_command.py:369} INFO - Running <TaskInstance: crypto_data_pipeline.check_api_connection scheduled__2024-12-05T02:00:00+00:00 [running]> on host 086bf0bb532a
+[2024-12-05 03:35:58,703] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=airflow
+AIRFLOW_CTX_DAG_ID=crypto_data_pipeline
+AIRFLOW_CTX_TASK_ID=check_api_connection
+AIRFLOW_CTX_EXECUTION_DATE=2024-12-05T02:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2024-12-05T02:00:00+00:00
+[2024-12-05 03:35:58,703] {http.py:97} INFO - Poking: api/v3/coins/markets
+[2024-12-05 03:35:58,721] {taskinstance.py:1889} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/sensors/base.py", line 277, in execute
+    poke_return = self.poke(context)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/http/sensors/http.py", line 112, in poke
+    raise exc
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/http/sensors/http.py", line 103, in poke
+    extra_options=self.extra_options,
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/http/hooks/http.py", line 114, in run
+    session = self.get_conn(headers)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/http/hooks/http.py", line 68, in get_conn
+    conn = self.get_connection(self.http_conn_id)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/hooks/base.py", line 67, in get_connection
+    conn = Connection.get_connection_from_secrets(conn_id)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/connection.py", line 430, in get_connection_from_secrets
+    raise AirflowNotFoundException(f"The conn_id `{conn_id}` isn't defined")
+airflow.exceptions.AirflowNotFoundException: The conn_id `coin_gecko_api` isn't defined
+[2024-12-05 03:35:58,724] {taskinstance.py:1400} INFO - Marking task as UP_FOR_RETRY. dag_id=crypto_data_pipeline, task_id=check_api_connection, execution_date=20241205T020000, start_date=20241205T033558, end_date=20241205T033558
+[2024-12-05 03:35:58,730] {standard_task_runner.py:97} ERROR - Failed to execute job 2 for task check_api_connection (The conn_id `coin_gecko_api` isn't defined; 50)
+[2024-12-05 03:35:58,765] {local_task_job.py:156} INFO - Task exited with return code 1
+[2024-12-05 03:35:58,795] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-12-05 03:58:46,357] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: crypto_data_pipeline.check_api_connection scheduled__2024-12-05T02:00:00+00:00 [queued]>
+[2024-12-05 03:58:46,363] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: crypto_data_pipeline.check_api_connection scheduled__2024-12-05T02:00:00+00:00 [queued]>
+[2024-12-05 03:58:46,363] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2024-12-05 03:58:46,363] {taskinstance.py:1357} INFO - Starting attempt 1 of 4
+[2024-12-05 03:58:46,363] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2024-12-05 03:58:46,371] {taskinstance.py:1377} INFO - Executing <Task(HttpSensor): check_api_connection> on 2024-12-05 02:00:00+00:00
+[2024-12-05 03:58:46,374] {standard_task_runner.py:52} INFO - Started process 50 to run task
+[2024-12-05 03:58:46,376] {standard_task_runner.py:79} INFO - Running: ['airflow', 'tasks', 'run', 'crypto_data_pipeline', 'check_api_connection', 'scheduled__2024-12-05T02:00:00+00:00', '--job-id', '2', '--raw', '--subdir', 'DAGS_FOLDER/crypto_data_pipeline.py', '--cfg-path', '/tmp/tmptich92xz', '--error-file', '/tmp/tmpka5prf_l']
+[2024-12-05 03:58:46,377] {standard_task_runner.py:80} INFO - Job 2: Subtask check_api_connection
+[2024-12-05 03:58:46,389] {logging_mixin.py:115} WARNING - /home/airflow/.local/lib/python3.7/site-packages/airflow/configuration.py:470 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-12-05 03:58:46,418] {task_command.py:369} INFO - Running <TaskInstance: crypto_data_pipeline.check_api_connection scheduled__2024-12-05T02:00:00+00:00 [running]> on host a86425dd3aa9
+[2024-12-05 03:58:46,477] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=airflow
+AIRFLOW_CTX_DAG_ID=crypto_data_pipeline
+AIRFLOW_CTX_TASK_ID=check_api_connection
+AIRFLOW_CTX_EXECUTION_DATE=2024-12-05T02:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2024-12-05T02:00:00+00:00
+[2024-12-05 03:58:46,477] {http.py:97} INFO - Poking: api/v3/coins/markets
+[2024-12-05 03:58:46,495] {taskinstance.py:1889} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/sensors/base.py", line 277, in execute
+    poke_return = self.poke(context)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/http/sensors/http.py", line 112, in poke
+    raise exc
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/http/sensors/http.py", line 103, in poke
+    extra_options=self.extra_options,
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/http/hooks/http.py", line 114, in run
+    session = self.get_conn(headers)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/http/hooks/http.py", line 68, in get_conn
+    conn = self.get_connection(self.http_conn_id)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/hooks/base.py", line 67, in get_connection
+    conn = Connection.get_connection_from_secrets(conn_id)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/connection.py", line 430, in get_connection_from_secrets
+    raise AirflowNotFoundException(f"The conn_id `{conn_id}` isn't defined")
+airflow.exceptions.AirflowNotFoundException: The conn_id `coin_gecko_api` isn't defined
+[2024-12-05 03:58:46,497] {taskinstance.py:1400} INFO - Marking task as UP_FOR_RETRY. dag_id=crypto_data_pipeline, task_id=check_api_connection, execution_date=20241205T020000, start_date=20241205T035846, end_date=20241205T035846
+[2024-12-05 03:58:46,503] {standard_task_runner.py:97} ERROR - Failed to execute job 2 for task check_api_connection (The conn_id `coin_gecko_api` isn't defined; 50)
+[2024-12-05 03:58:46,508] {local_task_job.py:156} INFO - Task exited with return code 1
+[2024-12-05 03:58:46,537] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check

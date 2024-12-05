@@ -17,7 +17,7 @@ dag = DAG(
         'retry_delay': timedelta(minutes=5),
     },
     description='DAG untuk mengambil data cryptocurrency dari CoinGecko',
-    schedule_interval='@daily',
+    schedule_interval='@hourly',
     start_date=days_ago(1),
     catchup=False,
 )
@@ -52,7 +52,7 @@ def save_to_postgres():
 
     # Koneksi ke PostgreSQL
     conn = psycopg2.connect(
-        dbname="crypto_db", user="postgres", password="postgres", host="localhost"
+        dbname="crypto_db", user="postgres", password="postgres", host="crypto_project-postgres-1"
     )
     cursor = conn.cursor()
 
