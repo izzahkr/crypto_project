@@ -52,3 +52,85 @@ AIRFLOW_CTX_DAG_RUN_ID=scheduled__2024-12-05T02:00:00+00:00
 [2024-12-05 03:41:01,773] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=crypto_data_pipeline, task_id=check_api_connection, execution_date=20241205T020000, start_date=20241205T034100, end_date=20241205T034101
 [2024-12-05 03:41:01,790] {local_task_job.py:156} INFO - Task exited with return code 0
 [2024-12-05 03:41:01,836] {local_task_job.py:273} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-12-05 04:48:31,182] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: crypto_data_pipeline.check_api_connection scheduled__2024-12-05T02:00:00+00:00 [queued]>
+[2024-12-05 04:48:31,189] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: crypto_data_pipeline.check_api_connection scheduled__2024-12-05T02:00:00+00:00 [queued]>
+[2024-12-05 04:48:31,189] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2024-12-05 04:48:31,189] {taskinstance.py:1357} INFO - Starting attempt 2 of 4
+[2024-12-05 04:48:31,189] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2024-12-05 04:48:31,198] {taskinstance.py:1377} INFO - Executing <Task(HttpSensor): check_api_connection> on 2024-12-05 02:00:00+00:00
+[2024-12-05 04:48:31,201] {standard_task_runner.py:52} INFO - Started process 90 to run task
+[2024-12-05 04:48:31,204] {standard_task_runner.py:79} INFO - Running: ['airflow', 'tasks', 'run', 'crypto_data_pipeline', 'check_api_connection', 'scheduled__2024-12-05T02:00:00+00:00', '--job-id', '9', '--raw', '--subdir', 'DAGS_FOLDER/crypto_data_pipeline.py', '--cfg-path', '/tmp/tmp9hzbx1vg', '--error-file', '/tmp/tmppxa8g_zp']
+[2024-12-05 04:48:31,204] {standard_task_runner.py:80} INFO - Job 9: Subtask check_api_connection
+[2024-12-05 04:48:31,220] {logging_mixin.py:115} WARNING - /home/airflow/.local/lib/python3.7/site-packages/airflow/configuration.py:470 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-12-05 04:48:31,260] {task_command.py:369} INFO - Running <TaskInstance: crypto_data_pipeline.check_api_connection scheduled__2024-12-05T02:00:00+00:00 [running]> on host a86425dd3aa9
+[2024-12-05 04:48:31,334] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=airflow
+AIRFLOW_CTX_DAG_ID=crypto_data_pipeline
+AIRFLOW_CTX_TASK_ID=check_api_connection
+AIRFLOW_CTX_EXECUTION_DATE=2024-12-05T02:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=2
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2024-12-05T02:00:00+00:00
+[2024-12-05 04:48:31,334] {http.py:97} INFO - Poking: api/v3/coins/markets
+[2024-12-05 04:48:31,343] {base.py:68} INFO - Using connection ID 'coin_gecko_api' for task execution.
+[2024-12-05 04:48:31,346] {http.py:129} INFO - Sending 'GET' to url: https://api.coingecko.com/api/v3/coins/markets
+[2024-12-05 04:48:39,364] {http.py:187} WARNING - HTTPSConnectionPool(host='api.coingecko.com', port=443): Max retries exceeded with url: /api/v3/coins/markets?vs_currency=usd (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f1c902ee4d0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution')) Tenacity will retry to execute the operation
+[2024-12-05 04:48:39,364] {taskinstance.py:1889} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/urllib3/connection.py", line 175, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw
+  File "/home/airflow/.local/lib/python3.7/site-packages/urllib3/util/connection.py", line 72, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/usr/local/lib/python3.7/socket.py", line 752, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/urllib3/connectionpool.py", line 710, in urlopen
+    chunked=chunked,
+  File "/home/airflow/.local/lib/python3.7/site-packages/urllib3/connectionpool.py", line 386, in _make_request
+    self._validate_conn(conn)
+  File "/home/airflow/.local/lib/python3.7/site-packages/urllib3/connectionpool.py", line 1040, in _validate_conn
+    conn.connect()
+  File "/home/airflow/.local/lib/python3.7/site-packages/urllib3/connection.py", line 358, in connect
+    self.sock = conn = self._new_conn()
+  File "/home/airflow/.local/lib/python3.7/site-packages/urllib3/connection.py", line 187, in _new_conn
+    self, "Failed to establish a new connection: %s" % e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPSConnection object at 0x7f1c902ee4d0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/requests/adapters.py", line 450, in send
+    timeout=timeout
+  File "/home/airflow/.local/lib/python3.7/site-packages/urllib3/connectionpool.py", line 786, in urlopen
+    method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+  File "/home/airflow/.local/lib/python3.7/site-packages/urllib3/util/retry.py", line 592, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.coingecko.com', port=443): Max retries exceeded with url: /api/v3/coins/markets?vs_currency=usd (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f1c902ee4d0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/sensors/base.py", line 277, in execute
+    poke_return = self.poke(context)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/http/sensors/http.py", line 103, in poke
+    extra_options=self.extra_options,
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/http/hooks/http.py", line 130, in run
+    return self.run_and_check(session, prepped_request, extra_options)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/http/hooks/http.py", line 188, in run_and_check
+    raise ex
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/http/hooks/http.py", line 180, in run_and_check
+    response = session.send(prepped_request, **send_kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/requests/sessions.py", line 645, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/requests/adapters.py", line 519, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.coingecko.com', port=443): Max retries exceeded with url: /api/v3/coins/markets?vs_currency=usd (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f1c902ee4d0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+[2024-12-05 04:48:39,384] {taskinstance.py:1400} INFO - Marking task as UP_FOR_RETRY. dag_id=crypto_data_pipeline, task_id=check_api_connection, execution_date=20241205T020000, start_date=20241205T044831, end_date=20241205T044839
+[2024-12-05 04:48:39,391] {standard_task_runner.py:97} ERROR - Failed to execute job 9 for task check_api_connection (HTTPSConnectionPool(host='api.coingecko.com', port=443): Max retries exceeded with url: /api/v3/coins/markets?vs_currency=usd (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f1c902ee4d0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution')); 90)
+[2024-12-05 04:48:39,404] {local_task_job.py:156} INFO - Task exited with return code 1
+[2024-12-05 04:48:39,450] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check

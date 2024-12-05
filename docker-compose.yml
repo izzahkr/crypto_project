@@ -58,7 +58,8 @@ services:
       - airflow_network
     depends_on:
       - postgres
-
+    volumes:
+      - ./streamlit:/app/streamlit 
 networks:
   airflow_network:
     driver: bridge
